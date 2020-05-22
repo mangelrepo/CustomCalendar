@@ -24,6 +24,7 @@ class CalendarAdapter(context: Context, cal: Calendar) {
     private val mItemList = ArrayList<Day>()
     private val mViewList = ArrayList<View>()
     var mEventList = ArrayList<Event>()
+    private var mEventSize = -1
 
     // public methods
     val count: Int
@@ -52,6 +53,10 @@ class CalendarAdapter(context: Context, cal: Calendar) {
 
     fun addEvent(event: Event) {
         mEventList.add(event)
+    }
+
+    fun setEventSize(eventSize: Int) {
+        mEventSize = eventSize
     }
 
     fun refresh() {
@@ -121,6 +126,11 @@ class CalendarAdapter(context: Context, cal: Calendar) {
                         && day.day == event.day) {
                     imgEventTag.visibility = View.VISIBLE
                     imgEventTag.setColorFilter(event.color, PorterDuff.Mode.SRC_ATOP)
+
+                    if (mEventSize > -1){
+                        imgEventTag.getLayoutParams().width = mEventSize;
+                        imgEventTag.getLayoutParams().height = mEventSize;
+                    }
                 }
             }
 

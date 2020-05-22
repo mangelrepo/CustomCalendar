@@ -55,7 +55,8 @@ class MainActivity : AppCompatActivity(){
         });
         */
         //To hide or show expand icon
-        customCalendar.setExpandIconVisible(false)
+        customCalendar.setExpandIconVisible(true)
+        customCalendar.setTodayIconVisible(true)
         val today = GregorianCalendar()
         customCalendar.addEventTag(today.get(Calendar.YEAR), today.get(Calendar.MONTH), today.get(Calendar.DAY_OF_MONTH))
         today.add(Calendar.DATE, 1)

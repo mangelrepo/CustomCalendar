@@ -27,6 +27,8 @@
             app:buttonRight_drawableTintColor="@android:color/white"
             app:expandIconColor="@android:color/white"
             app:eventColor="@android:color/white"
+            app:eventSize="35dp"
+            app:hideArrows="true"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"/>
         <TextView

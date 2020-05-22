@@ -37,6 +37,7 @@
         <attr name="primaryColor" format="color" />
 
         <attr name="eventColor" format="color" />
+        <attr name="eventSize" format="dimension" />
 
 
         <attr name="todayItem_textColor" format="color" />

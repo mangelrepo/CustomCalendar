@@ -42,6 +42,7 @@ abstract class UICalendar constructor(context: Context, attrs: AttributeSet? = n
     protected var expandIconView: ExpandIconView
     protected var clEntireTextView: RelativeLayout
     protected var mTodayIcon : ImageView
+    protected var mCalendarIcon : ImageView
     protected var mListenerSwipe: OnSwipeTouchListener? = null
 
     // callback
@@ -109,6 +110,14 @@ abstract class UICalendar constructor(context: Context, attrs: AttributeSet? = n
             mTodayIcon.setColorFilter(this.todayIconColor)
         }
 
+    var calendarIconColor = Color.WHITE
+        set(calendarIconColor) {
+            field = calendarIconColor
+            redraw()
+
+            mCalendarIcon.setColorFilter(this.calendarIconColor)
+        }
+
     var primaryColor = Color.WHITE
         set(primaryColor) {
             field = primaryColor
@@ -141,7 +150,7 @@ abstract class UICalendar constructor(context: Context, attrs: AttributeSet? = n
     /**
      * This can be used to defined the left icon drawable other than predefined icon
      */
-    var buttonLeftDrawable = resources.getDrawable(R.drawable.left_icon)
+    var buttonLeftDrawable = resources.getDrawable(R.drawable.ic_chevron_left)
         set(buttonLeftDrawable) {
             field = buttonLeftDrawable
             mBtnPrevMonth.setImageDrawable(buttonLeftDrawable)
@@ -151,7 +160,7 @@ abstract class UICalendar constructor(context: Context, attrs: AttributeSet? = n
     /**
      *  This can be used to set the drawable for the right icon, other than predefined icon
      */
-    var buttonRightDrawable = resources.getDrawable(R.drawable.right_icon)
+    var buttonRightDrawable = resources.getDrawable(R.drawable.ic_chevron_right)
         set(buttonRightDrawable) {
             field = buttonRightDrawable
             mBtnNextMonth.setImageDrawable(buttonRightDrawable)
@@ -168,7 +177,12 @@ abstract class UICalendar constructor(context: Context, attrs: AttributeSet? = n
         private set(eventColor) {
             field = eventColor
             redraw()
+        }
 
+    var eventSize = 0
+        private set(eventSize) {
+            field = eventSize
+            redraw()
         }
 
     fun getSwipe(context: Context): OnSwipeTouchListener {
@@ -224,6 +238,7 @@ abstract class UICalendar constructor(context: Context, attrs: AttributeSet? = n
         mLayoutRoot = rootView.findViewById(R.id.layout_root)
         mTxtTitle = rootView.findViewById(R.id.txt_title)
         mTodayIcon = rootView.findViewById(R.id.today_icon)
+        mCalendarIcon = rootView.findViewById(R.id.calendar_icon)
         mTableHead = rootView.findViewById(R.id.table_head)
         mTableBody = rootView.findViewById(R.id.table_body)
         mLayoutBtnGroupMonth = rootView.findViewById(R.id.layout_btn_group_month)
@@ -273,9 +288,11 @@ abstract class UICalendar constructor(context: Context, attrs: AttributeSet? = n
 
         textColor = attrs.getColor(R.styleable.UICalendar_textColor, textColor)
         todayIconColor = attrs.getColor(R.styleable.UICalendar_textColor, textColor)
+        calendarIconColor = attrs.getColor(R.styleable.UICalendar_textColor, textColor)
         primaryColor = attrs.getColor(R.styleable.UICalendar_primaryColor, primaryColor)
 
         eventColor = attrs.getColor(R.styleable.UICalendar_eventColor, eventColor)
+        eventSize = attrs.getDimensionPixelSize(R.styleable.UICalendar_eventSize, -1);
 
 
         todayItemTextColor = attrs.getColor(

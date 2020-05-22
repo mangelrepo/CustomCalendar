@@ -14,10 +14,7 @@ import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.view.animation.Transformation
-import android.widget.LinearLayout
-import android.widget.TableLayout
-import android.widget.TableRow
-import android.widget.TextView
+import android.widget.*
 import com.mangelrepo.customcalendar.R
 import com.mangelrepo.customcalendar.data.CalendarAdapter
 import com.mangelrepo.customcalendar.data.Day
@@ -41,6 +38,7 @@ class CustomCalendar : UICalendar, View.OnClickListener {
         this.selectedDay = Day(today.get(Calendar.YEAR), today.get(Calendar.MONTH), today.get(Calendar.DAY_OF_MONTH))
         mCurrentWeekIndex = suitableRowIndex
         setAdapter(calenderAdapter)
+        select(Day(today.get(Calendar.YEAR), today.get(Calendar.MONTH), today.get(Calendar.DAY_OF_MONTH)))
     }
 
     override fun onClick(view: View?) {
@@ -190,6 +188,14 @@ class CustomCalendar : UICalendar, View.OnClickListener {
         mBtnNextWeek.setOnClickListener { nextWeek() }
 
         mTodayIcon.setOnClickListener { changeToToday() }
+
+        mCalendarIcon.setOnClickListener {
+            if (expanded) {
+                collapse(400)
+            } else {
+                expand(400)
+            }
+        }
 
         expandIconView.setState(ExpandIconView.MORE, true)
 
@@ -352,7 +358,7 @@ class CustomCalendar : UICalendar, View.OnClickListener {
     fun setAdapter(adapter: CalendarAdapter) {
         mAdapter = adapter
         adapter.setFirstDayOfWeek(firstDayOfWeek)
-
+        adapter.setEventSize(eventSize)
         reload()
 
         // init week
@@ -658,6 +664,46 @@ class CustomCalendar : UICalendar, View.OnClickListener {
         }
     }
 
+    fun setCalendarIconVisible(visible: Boolean) {
+        if (visible) {
+            mCalendarIcon.visibility = View.VISIBLE
+        } else {
+            mCalendarIcon.visibility = View.GONE
+        }
+    }
+
+    fun setTodayIconVisible(visible: Boolean) {
+        if (visible) {
+            mTodayIcon.visibility = View.VISIBLE
+        } else {
+            mTodayIcon.visibility = View.GONE
+        }
+    }
+
+/**
+ * Pendiente de hacer, poder cambiar la estructura de la cabecera dinámicamente
+ */
+ /*
+    fun setHeaderStructure(visible: Int) {
+        if (visible == 1) {
+            val params1 = mBtnPrevMonth.layoutParams as RelativeLayout.LayoutParams
+            params1.addRule(RelativeLayout.ALIGN_PARENT_LEFT)
+            mBtnPrevMonth.layoutParams = params1
+
+            val params2 = mBtnNextMonth.layoutParams as RelativeLayout.LayoutParams
+            params2.addRule(RelativeLayout.ALIGN_PARENT_RIGHT)
+            mBtnNextMonth.layoutParams = params2
+
+            val params3 = mCalendarIcon.layoutParams as RelativeLayout.LayoutParams
+            params3.addRule(RelativeLayout.LEFT_OF, mTxtTitle.id)
+            mCalendarIcon.layoutParams = params3
+
+            val params4 = mTodayIcon.layoutParams as RelativeLayout.LayoutParams
+            params4.addRule(RelativeLayout.RIGHT_OF, mTxtTitle.id)
+            mTodayIcon.layoutParams = params4
+        }
+    }
+*/
     data class Params(val prevDays: Int, val nextDaysBlocked: Int)
 
     var params: Params? = null
