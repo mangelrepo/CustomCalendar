@@ -389,7 +389,7 @@ class CustomCalendar : UICalendar, View.OnClickListener {
                 mTableHead.startAnimation(myAnim)
                 return
             }
-            
+
             if (cal.get(Calendar.MONTH) == cal.getActualMinimum(Calendar.MONTH)) {
                 cal.set(cal.get(Calendar.YEAR) - 1, cal.getActualMaximum(Calendar.MONTH), 1)
             } else {
@@ -554,7 +554,7 @@ class CustomCalendar : UICalendar, View.OnClickListener {
     private fun collapseTo(index: Int) {
         var index = index
         if (state == STATE_COLLAPSED) {
-            if (index == -1) {
+            if (index == -1 || index >= mTableBody.childCount) {
                 index = mTableBody.childCount - 1
             }
             mCurrentWeekIndex = index
