@@ -63,27 +63,30 @@ class MainActivity : AppCompatActivity(){
         customCalendar.selectedDay = Day(today.get(Calendar.YEAR), today.get(Calendar.MONTH), today.get(Calendar.DAY_OF_MONTH))
         customCalendar.addEventTag(today.get(Calendar.YEAR), today.get(Calendar.MONTH), today.get(Calendar.DAY_OF_MONTH), Color.BLUE)
         customCalendar.addEventTag(today.get(Calendar.YEAR), today.get(Calendar.MONTH), today.get(Calendar.DAY_OF_MONTH), Color.RED)
-        customCalendar.params = CustomCalendar.Params(0, 100)
         customCalendar.setCalendarListener(object : CustomCalendar.CalendarListener {
             override fun onDayChanged() {
 
             }
 
             override fun onClickListener() {
+                /*
                 if(customCalendar.expanded){
                     customCalendar.collapse(400)
                 }
                 else{
                     customCalendar.expand(400)
                 }
+
+                 */
             }
 
             override fun onDaySelect() {
                 textView.text = customCalendar.selectedDay?.toUnixTime().toString()
+
             }
 
             override fun onItemClick(v: View) {
-
+                customCalendar.collapse(400)
             }
 
             override fun onDataUpdate() {

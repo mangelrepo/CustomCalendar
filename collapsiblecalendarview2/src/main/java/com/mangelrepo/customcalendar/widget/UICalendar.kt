@@ -54,7 +54,7 @@ abstract class UICalendar constructor(context: Context, attrs: AttributeSet? = n
         mScrollViewBody.setParams(getSwipe(context))
     }
 
-    var datePattern = "MMMM YYYY"
+    var datePattern = "MMMM yyyy"
         set(value: String) {
             field = value
 
@@ -250,9 +250,11 @@ abstract class UICalendar constructor(context: Context, attrs: AttributeSet? = n
         mScrollViewBody = rootView.findViewById(R.id.scroll_view_body)
         expandIconView = rootView.findViewById(R.id.expandIcon)
         clEntireTextView = rootView.findViewById(R.id.cl_title)
+        /*
         clEntireTextView.setOnTouchListener(View.OnTouchListener { view, motionEvent ->
             expandIconView.performClick()
         })
+         */
         mLayoutRoot.setOnTouchListener(getSwipe(context));
         mScrollViewBody.setOnTouchListener(getSwipe(context))
         mScrollViewBody.setParams(getSwipe(context))
