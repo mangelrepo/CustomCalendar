@@ -389,13 +389,12 @@ class CustomCalendar : UICalendar, View.OnClickListener {
                 mTableHead.startAnimation(myAnim)
                 return
             }
-            /*
+            
             if (cal.get(Calendar.MONTH) == cal.getActualMinimum(Calendar.MONTH)) {
                 cal.set(cal.get(Calendar.YEAR) - 1, cal.getActualMaximum(Calendar.MONTH), 1)
             } else {
                 cal.set(Calendar.MONTH, cal.get(Calendar.MONTH) - 1)
-            }*/
-            cal.set(Calendar.MONTH, cal.get(Calendar.MONTH) - 1)
+            }
 
             reload()
             if (mListener != null) {
@@ -416,14 +415,13 @@ class CustomCalendar : UICalendar, View.OnClickListener {
                 mTableHead.startAnimation(myAnim)
                 return
             }
-            /*
+
             if (cal.get(Calendar.MONTH) == cal.getActualMaximum(Calendar.MONTH)) {
                 cal.set(cal.get(Calendar.YEAR) + 1, cal.getActualMinimum(Calendar.MONTH), 1)
             } else {
                 cal.set(Calendar.MONTH, cal.get(Calendar.MONTH) + 1)
             }
-             */
-            cal.set(Calendar.MONTH, cal.get(Calendar.MONTH) + 1)
+
 
             reload()
             if (mListener != null) {
